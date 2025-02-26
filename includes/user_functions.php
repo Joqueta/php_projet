@@ -1,6 +1,25 @@
 <?php
 require_once 'db.php';
 
+$host = 'localhost';
+$db = 'mydatabase';  // Make sure to replace 'your_database' with the actual database name
+$user = 'root';
+$password = ''; // Replace with your actual password
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES => false,
+];
+
+try {
+    $pdo = new PDO($dsn, $user, $password, $options);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+}
+
 function validateUser($username, $password) {
     $pdo = getDBConnection();
     $sql = "SELECT * FROM users WHERE username = :username";
@@ -24,7 +43,7 @@ function createUser(PDO $pdo, string $username, string $password, string $email)
     $stmt->bindParam(':password', $hashedPassword);
     $stmt->bindParam(':email', $email);
 
-    return $stmt->execute();
+    return $stmt->execute(); 
 }
 
 function login(PDO $pdo, array $credentials): array|false

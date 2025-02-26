@@ -10,7 +10,7 @@ function createDatabase(PDO $pdo) {
 }
 
 function getDBConnection($dbname = null) {
-    $dsn = 'mysql:host=localhost';
+    $dsn = 'mysql:host=localhost;dbname=mydatabase';
     $username = 'root';
     $password = '';
 
@@ -29,5 +29,8 @@ function getDBConnection($dbname = null) {
 
 $pdo = getDBConnection();
 createDatabase($pdo);
+
+// Sélectionnez la base de données après l'avoir créée
+$pdo->exec("USE mydatabase");
 
 ?>

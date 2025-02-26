@@ -1,6 +1,7 @@
 <?php
 require_once '../includes/db.php';
 require_once '../includes/user_functions.php';
+require_once '../includes/create_table.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
@@ -8,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
 
     $pdo = getDBConnection();
+    createUsersTable($pdo);
     $result = createUser($pdo, $username, $password, $email);
 
     if ($result) {
