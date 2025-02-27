@@ -17,7 +17,7 @@ $pdo = getDBConnection();
 </head>
 <body>
     <h2>Ajouter une nouvelle tâche</h2>
-    <form action="create_task.php" method="POST">
+    <form action="../includes/create_task.php" method="POST">
         <label for="title">Titre :</label>
         <input type="text" id="title" name="title" required>
 
@@ -36,7 +36,7 @@ $pdo = getDBConnection();
             ?>
         </select>
 
-        <button type="submit">Ajouter</button>
+        <input type="submit" value="Ajouter">
     </form>
 </body>
 </html>

@@ -47,6 +47,6 @@ $tasks = $stmt->fetchAll();
                 <td><?= htmlspecialchars($task["category"] ?? "Aucune") ?></td>
             </tr>
         <?php endforeach; ?>
-    </table>
+    </table>    
 </body>
 </html>
