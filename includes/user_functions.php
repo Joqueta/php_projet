@@ -36,4 +36,12 @@ function login(PDO $pdo, array $credentials): array|false
     return $user;
 }
 
+setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr_FR', 'fr', 'French_France'); 
+$date = new DateTime();
+
+// Correction de l'encodage
+$formattedDate = strftime('%A %d %B %Y', $date->getTimestamp());
+$formattedDate = mb_convert_encoding($formattedDate, 'UTF-8', 'ISO-8859-1'); // Correction d'encodage
+
+$formattedTime = $date->format('H:i');
 ?>

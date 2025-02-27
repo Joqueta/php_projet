@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<link rel="stylesheet" type="text/css" href="../css/stylesheet_login.css">
     <title>Connexion</title>
 </head>
 <body>
@@ -28,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="username" name="username" required><br>
         <label for="password">Mot de passe:</label><br>
         <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Connexion">
+        <input type="submit" value="Connexion"><br>
+        <a href="register.php">Vous n'avez pas de compte?</a>
     </form>
 </body>
 </html>
