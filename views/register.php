@@ -10,6 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $pdo = getDBConnection();
     createUsersTable($pdo);
+    createCategoriesTable($pdo);
+    createTasksTable($pdo);
+    createCommentsTable($pdo);
+    createAttachmentsTable($pdo);
     $result = createUser($pdo, $username, $password, $email);
 
     if ($result) {

@@ -12,6 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Nom d'utilisateur ou mot de passe incorrect.";
     }
+
+    session_start();
+echo "Session user_id : " . ($_SESSION["user_id"] ?? "Non défini");
 }
 ?>
 
