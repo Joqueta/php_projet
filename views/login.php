@@ -1,5 +1,8 @@
 <?php
 include_once '../includes/user_functions.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
@@ -8,12 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = validateUser($username, $password);
 
     if ($user) {
+        // Stocker l'ID utilisateur dans la session
+        $_SESSION["user_id"] = $user['id'];
         echo "Connexion réussie !";
+        header("Location: dashboard.php");
     } else {
         echo "Nom d'utilisateur ou mot de passe incorrect.";
     }
-
-    session_start();
 echo "Session user_id : " . ($_SESSION["user_id"] ?? "Non défini");
 }
 ?>
