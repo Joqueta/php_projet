@@ -25,7 +25,7 @@ echo "Session user_id : " . ($_SESSION["user_id"] ?? "Non défini");
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<link rel="stylesheet" type="text/css" href="../css/stylesheet_login.css">
     <title>Connexion</title>
 </head>
 <body>
@@ -35,7 +35,8 @@ echo "Session user_id : " . ($_SESSION["user_id"] ?? "Non défini");
         <input type="text" id="username" name="username" required><br>
         <label for="password">Mot de passe:</label><br>
         <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Connexion">
+        <input type="submit" value="Connexion"><br>
+        <a href="register.php">Vous n'avez pas de compte?</a>
     </form>
 </body>
 </html>

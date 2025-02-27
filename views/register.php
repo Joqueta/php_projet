@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="../css/stylesheet_register.css">
     <title>Inscription</title>
 </head>
 <body>
@@ -38,5 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" id="password" name="password" required><br>
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required><br><br>
-        <input type="submit" value="Inscription">
+        <input type="submit" value="Inscription"><br>
+        <a href="login.php">Vous avez déjà un compte</a>
     </form>

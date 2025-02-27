@@ -3,7 +3,7 @@ function createDatabase(PDO $pdo) {
     $sql = "CREATE DATABASE IF NOT EXISTS mydatabase";
     try {
         $pdo->exec($sql);
-        echo "Base de données `mydatabase` créée avec succès.<br>";
+        #echo "Base de données `mydatabase` créée avec succès.<br>";
     } catch (PDOException $e) {
         echo 'Erreur de création de la base de données : ' . $e->getMessage();
     }
