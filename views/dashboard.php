@@ -2,11 +2,15 @@
 require_once '../includes/db.php';
 require_once '../includes/user_functions.php';
 
-#if (!isset($_SESSION["user_id"])) {   #code mort
-#    header("Location: login.php");
-#    exit();
-#*}
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
+if (!isset($_SESSION["user_id"])) {  
+    header("Location: login.php");
+    exit();
+}
+// Ajouter log out
 $pdo = getDBConnection();
 $user_id = $_SESSION["user_id"];
 
