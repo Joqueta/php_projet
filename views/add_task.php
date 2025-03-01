@@ -39,7 +39,7 @@ $pdo = getDBConnection();
             ?>
         </select>
 
-        <button type="submit">Ajouter</button>
+        <input type="submit" value="Ajouter">
     </form>
 </body>
 </html>

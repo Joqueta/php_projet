@@ -59,6 +59,6 @@ $tasks = $stmt->fetchAll();
                 </td>
             </tr>
         <?php endforeach; ?>
-    </table>
+    </table>    
 </body>
 </html>
