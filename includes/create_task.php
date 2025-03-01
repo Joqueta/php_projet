@@ -1,11 +1,15 @@
 <?php
-session_start();
 require_once 'db.php'; // Fichier contenant la connexion PDO
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Vérifie si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
     die("Vous devez être connecté pour ajouter une tâche.");
 }
+
 
 $pdo = getDBConnection(); // Connexion à la BDD
 
@@ -32,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]);
 
         echo "Tâche ajoutée avec succès !";
-        header("Location: ./../views/dashboard.php"); // Redirection après ajout
+        header("Location: ../views/dashboard.php"); // Redirection après ajout
         exit();
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();
