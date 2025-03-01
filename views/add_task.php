@@ -37,10 +37,6 @@ $pdo = getDBConnection();
         <label for="category_id">Catégorie :</label>
         <select id="category_id" name="category_id">
             <option value="">Aucune</option>
-            <option value="">PHP</option>
-            <option value="">SQL</option>
-            <option value="">HTML</option>
-            <option value="">CSS</option>
             <?php
             // Charger les catégories depuis la BDD
             $stmt = $pdo->query("SELECT id, name FROM categories");
