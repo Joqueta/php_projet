@@ -43,6 +43,7 @@ $tasks = $stmt->fetchAll();
             <th>Description</th>
             <th>Statut</th>
             <th>Catégorie</th>
+            <th>Supprimer</th>
         </tr>
         <?php foreach ($tasks as $task) : ?>
             <tr>
@@ -50,6 +51,12 @@ $tasks = $stmt->fetchAll();
                 <td><?= htmlspecialchars($task["description"]) ?></td>
                 <td><?= htmlspecialchars($task["status"]) ?></td>
                 <td><?= htmlspecialchars($task["category"] ?? "Aucune") ?></td>
+                <td>
+                    <form action="../includes/delete_task.php" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?');">
+                        <input type="hidden" name="task_id" value="<?= $task['id'] ?>">
+                        <button type="submit">🗑️ Supprimer</button>
+                    </form>
+                </td>
             </tr>
         <?php endforeach; ?>
     </table>
