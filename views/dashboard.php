@@ -14,7 +14,7 @@ if (!isset($_SESSION["user_id"])) {
 $pdo = getDBConnection();
 $user_id = $_SESSION["user_id"];
 
-$stmt = $pdo->prepare("SELECT tasks.id, tasks.title, tasks.description, tasks.status, categories.name AS category 
+$stmt = $pdo->prepare("SELECT tasks.id, tasks.title, tasks.description, tasks.importance, categories.name AS category 
                        FROM tasks 
                        LEFT JOIN categories ON tasks.category_id = categories.id
                        WHERE tasks.user_id = :user_id");
@@ -23,7 +23,7 @@ $tasks = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +41,7 @@ $tasks = $stmt->fetchAll();
         <tr">
             <th>Titre</th>
             <th>Description</th>
-            <th>Statut</th>
+            <th>Importance</th>
             <th>Catégorie</th>
             <th>Supprimer</th>
         </tr>
@@ -49,7 +49,7 @@ $tasks = $stmt->fetchAll();
             <tr>
                 <td><?= htmlspecialchars($task["title"]) ?></td>
                 <td><?= htmlspecialchars($task["description"]) ?></td>
-                <td><?= htmlspecialchars($task["status"]) ?></td>
+                <td><?= htmlspecialchars($task["importance"]) ?></td>
                 <td><?= htmlspecialchars($task["category"] ?? "Aucune") ?></td>
                 <td>
                     <form action="../includes/delete_task.php" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?');">

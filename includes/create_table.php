@@ -38,7 +38,7 @@ function createTasksTable(PDO $pdo) {
         category_id INT NULL,
         title VARCHAR(255) NOT NULL,
         description TEXT NULL,
-        status ENUM('pending', 'in_progress', 'completed') DEFAULT 'pending',
+        importance VARCHAR(50),
         due_date DATE NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,

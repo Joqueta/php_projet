@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = trim($_POST["title"]);
     $description = trim($_POST["description"]);
     $category_id = isset($_POST["category_id"]) ? intval($_POST["category_id"]) : NULL;
+    $importance = $_POST["importance"];
     $user_id = $_SESSION['user_id']; // ID de l'utilisateur connecté
 
     if (empty($title)) {
@@ -24,15 +25,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        $sql = "INSERT INTO tasks (user_id, category_id, title, description, status, created_at) 
-                VALUES (:user_id, :category_id, :title, :description, 'pending', NOW())";
+        $sql = "INSERT INTO tasks (user_id, category_id, title, description, importance, created_at) 
+                VALUES (:user_id, :category_id, :title, :description, :importance, NOW())";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
-            ':user_id' => $user_id,
-            ':category_id' => $category_id,
-            ':title' => $title,
-            ':description' => $description
+        ":title" => $title,
+        ":description" => $description,
+        ":category_id" => $category_id,
+        ":importance" => $importance,
+        ":user_id" => $user_id
         ]);
 
         echo "Tâche ajoutée avec succès !";
