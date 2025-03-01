@@ -20,7 +20,7 @@ $pdo = getDBConnection();
         echo createHeader();
     ?>
     <h2>Ajouter une nouvelle tâche</h2>
-    <form action="../includes/create_task.php" method="POST">
+    <form action="../includes/create_task.php" method="POST" enctype="multipart/form-data">
         <label for="title">Titre :</label>
         <input type="text" id="title" name="title" required>
 
@@ -45,6 +45,9 @@ $pdo = getDBConnection();
             }
             ?>
         </select>
+
+        <label for="attachment">Ajouter un fichier :</label>
+        <input type="file" id="attachment" name="attachment">
 
         <input type="submit" value="Ajouter">
     </form>
