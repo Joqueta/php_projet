@@ -54,7 +54,17 @@ $userCount = $stmt->fetch(PDO::FETCH_ASSOC)['user_count'];
     <!-- Section des témoignages -->
     <section class="testimonials">
         <h2>Ce que disent nos utilisateurs</h2>
-        <blockquote>"Cette application m'a permis de mieux gérer mon emploi du temps. Je ne peux plus m'en passer !" — Claire</blockquote>
+        <?php
+        $stmt = $pdo->query("SELECT comments.comment, users.username FROM comments JOIN users ON comments.user_id = users.id ORDER BY comments.created_at DESC");
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "<blockquote>\"" . htmlspecialchars($row['comment']) . "\" — " . htmlspecialchars($row['username']) . "</blockquote>";
+        }
+        ?>
+        <h3>Ajouter un commentaire</h3>
+        <form action="../includes/submit_comment.php" method="POST">
+            <textarea name="comment" required></textarea>
+            <button type="submit">Soumettre</button>
+        </form>
     </section>
 
     <!-- Section FAQ -->

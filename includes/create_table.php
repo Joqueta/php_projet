@@ -38,7 +38,7 @@ function createTasksTable(PDO $pdo) {
         category_id INT NULL,
         title VARCHAR(255) NOT NULL,
         description TEXT NULL,
-        status ENUM('pending', 'in_progress', 'completed') DEFAULT 'pending',
+        importance VARCHAR(50),
         due_date DATE NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
@@ -76,10 +76,12 @@ function createAttachmentsTable(PDO $pdo) {
     $sql = "CREATE TABLE IF NOT EXISTS attachments (
         id INT AUTO_INCREMENT PRIMARY KEY,
         task_id INT NOT NULL,
-        filename VARCHAR(255) NOT NULL,
+        file_name VARCHAR(255) NOT NULL,
         file_path VARCHAR(255) NOT NULL,
+        file_type VARCHAR(50) NOT NULL,
+        file_size INT NOT NULL,
         uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE
+        FOREIGN KEY (task_id) REFERENCES tasks(id)
     )";
 
     try {
