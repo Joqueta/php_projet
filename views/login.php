@@ -29,6 +29,10 @@ echo "Session user_id : " . ($_SESSION["user_id"] ?? "Non défini");
     <title>Connexion</title>
 </head>
 <body>
+    <?php 
+        include "../includes/navbar.php";
+        echo createHeader();
+    ?>
     <h2>Formulaire de connexion</h2>
     <form action="login.php" method="post">
         <label for="username">Nom d'utilisateur:</label><br>

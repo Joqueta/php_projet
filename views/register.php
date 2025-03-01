@@ -31,6 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Inscription</title>
 </head>
 <body>
+    <?php 
+        include "../includes/navbar.php";
+        echo createHeader();
+    ?>
     <h2>Formulaire d'inscription</h2>
     <form action="register.php" method="post">
         <label for="username">Nom d'utilisateur:</label><br>

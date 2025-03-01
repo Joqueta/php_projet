@@ -27,13 +27,18 @@ $tasks = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/stylesheet_dashboard.css">
     <title>Tableau de bord</title>
 </head>
 <body>
+    <?php 
+        include "../includes/navbar.php";
+        echo createHeader();
+    ?>
     <h2>Vos tâches</h2>
     <a href="add_task.php">➕ Ajouter une tâche</a>
     <table border="1">
-        <tr>
+        <tr">
             <th>Titre</th>
             <th>Description</th>
             <th>Statut</th>

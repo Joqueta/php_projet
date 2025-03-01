@@ -1,13 +1,28 @@
+<?php
+require_once"../includes/user_functions.php";
+
+$pdo = new PDO('mysql:host=localhost;dbname=mydatabase', 'root', '');
+
+// Récupérer le nombre d'utilisateurs
+$sql = "SELECT COUNT(*) AS user_count FROM users";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$userCount = $stmt->fetch(PDO::FETCH_ASSOC)['user_count'];
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenue sur ToDo List</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Ajoute ton CSS ici -->
+    <link rel="stylesheet" href="../css/stylesheet_landingpage.css">
 </head>
 <body>
-    
+    <?php 
+        include "../includes/navbar.php";
+        echo createHeader();
+    ?>
 
     <!-- Section d'introduction -->
     <section class="hero">
@@ -33,7 +48,6 @@
         <ul>
             <li>Créer des tâches rapidement</li>
             <li>Prioriser et organiser tes tâches</li>
-            <li>Rappels et notifications</li>
         </ul>
     </section>
 
@@ -48,13 +62,6 @@
         <h2>Questions fréquentes</h2>
         <p><strong>Q :</strong> Est-ce que l'application est gratuite ?<br><strong>R :</strong> Oui, l'application est entièrement gratuite.</p>
     </section>
-
-    <!-- Date et heure -->
-    <section class="date-time">
-        <p id="current-date"></p>
-        <p id="current-time"></p>
-    </section>
-
     <!-- Footer -->
     <footer>
         <ul>

@@ -1,10 +1,8 @@
 <?php
-#session_start();
-#if (!isset($_SESSION['user_id'])) {   #code mort
-#    header("Location: login.php");
-#    exit();
-#}
+
 require_once '../includes/db.php';
+require_once '../includes/user_functions.php';
+require_once '../includes/create_task.php';
 $pdo = getDBConnection();
 ?>
 
@@ -13,11 +11,16 @@ $pdo = getDBConnection();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/stylesheet_addtask.css">
     <title>Ajouter une tâche</title>
 </head>
 <body>
+    <?php 
+        include "../includes/navbar.php";
+        echo createHeader();
+    ?>
     <h2>Ajouter une nouvelle tâche</h2>
-    <form action="create_task.php" method="POST">
+    <form action="../includes/create_task.php" method="POST">
         <label for="title">Titre :</label>
         <input type="text" id="title" name="title" required>
 
