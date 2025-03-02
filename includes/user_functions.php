@@ -60,12 +60,16 @@ function login(PDO $pdo, array $credentials): array|false
     return $user;
 }
 
+// Définir le fuseau horaire
+date_default_timezone_set('Europe/Paris');
+
 setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr_FR', 'fr', 'French_France'); 
 $date = new DateTime();
 
-// Correction de l'encodage
-$formattedDate = strftime('%A %d %B %Y', $date->getTimestamp());
-$formattedDate = mb_convert_encoding($formattedDate, 'UTF-8', 'ISO-8859-1'); // Correction d'encodage
+// Utilisation de IntlDateFormatter pour formater la date en français
+$formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+$formattedDate = $formatter->format($date);
 
+// Formater l'heure
 $formattedTime = $date->format('H:i');
 ?>
