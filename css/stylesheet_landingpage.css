@@ -7,19 +7,19 @@
 
 body {
     background-color: #f4f7fc;
-    color: #333;
+    color: #333333;
     line-height: 1.6;
 }
 
 a {
     text-decoration: none;
-    color: #fff;
+    color: #ffffff;
 }
 
 /* Hero Section */
 .hero {
     background: linear-gradient(325deg, rgba(47,61,167,1) 0%, rgba(119,181,254,1) 100%);
-    color: #fff;
+    color: #ffffff;
     padding: 60px 20px;
     text-align: center;
 }
@@ -37,7 +37,7 @@ a {
 .cta {
     display: inline-block;
     background-color: #77b5fe;
-    color: #fff;
+    color: #ffffff;
     padding: 12px 30px;
     margin: 10px 15px;
     border-radius: 5px;
@@ -50,7 +50,7 @@ a {
 
 /* Stats Section */
 .stats {
-    background-color: #fff;
+    background-color: #ffffff;
     padding: 50px 20px;
     text-align: center;
 }
@@ -62,7 +62,7 @@ a {
 
 .stats p {
     font-size: 1.2rem;
-    color: #666;
+    color: #666666;
 }
 
 /* Features Section */
@@ -100,7 +100,7 @@ a {
 .testimonials blockquote {
     font-size: 1.2rem;
     font-style: italic;
-    color: #555;
+    color: #555555;
     margin: 0 auto;
     max-width: 800px;
 }
@@ -118,12 +118,12 @@ a {
 
 .faq p {
     font-size: 1.1rem;
-    color: #666;
+    color: #666666;
 }
 
 /* Footer */
 footer {
-    background-color: #333;
+    background-color: #333333;
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -139,12 +139,12 @@ footer li {
 }
 
 footer a {
-    color: #fff;
+    color: #ffffff;
     font-size: 1rem;
 }
 
 footer a:hover {
-    color: #fd9e5f;
+    color: #77B5FE;
 }
 
 /* Responsive Styles */

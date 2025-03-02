@@ -36,6 +36,7 @@ $tasks = $stmt->fetchAll();
         include "../includes/navbar.php";
         echo createHeader();
     ?>
+    <main>
     <h2>Vos tâches</h2>
     <a href="add_task.php">➕ Ajouter une tâche</a>
     <table border="1">
@@ -68,6 +69,7 @@ $tasks = $stmt->fetchAll();
                 </td>
             </tr>
         <?php endforeach; ?>
-    </table>    
+    </table>   
+    </main> 
 </body>
 </html>
