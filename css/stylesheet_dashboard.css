@@ -4,25 +4,16 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
-main{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-/* Titre */
+
 h2 {
     color: #333;
     margin-bottom: 20px;
 }
 
 /* Bouton ajouter une tâche */
-main a {
+a {
     display: inline-block;
     text-decoration: none;
     background-color: #007bff;
@@ -34,11 +25,11 @@ main a {
     transition: background 0.3s;
 }
 
-main a:hover {
+a:hover {
     background-color: #0056b3;
 }
 
-/* Tableau */
+
 table {
     width: 80%;
     max-width: 900px;
@@ -70,7 +61,6 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     table {
         width: 100%;

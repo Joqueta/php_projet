@@ -1,5 +1,6 @@
 <?php
 include_once '../includes/user_functions.php';
+include_once '../includes/admin_functions.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -11,8 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = validateUser($username, $password);
 
     if ($user) {
-        // Stocker l'ID utilisateur dans la session
         $_SESSION["user_id"] = $user['id'];
+        $_SESSION["role"] = $user['role'];
         echo "Connexion réussie !";
         header("Location: dashboard.php");
     } else {

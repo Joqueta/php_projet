@@ -1,23 +1,23 @@
 <?php
-require_once 'db.php'; // Fichier contenant la connexion PDO
+require_once 'db.php'; 
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Vérifie si l'utilisateur est connecté
+
 if (!isset($_SESSION['user_id'])) {
     die("Vous devez être connecté pour ajouter une tâche.");
 }
 
-$pdo = getDBConnection(); // Connexion à la BDD
+$pdo = getDBConnection(); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = trim($_POST["title"]);
     $description = trim($_POST["description"]);
     $category_id = isset($_POST["category_id"]) ? intval($_POST["category_id"]) : NULL;
     $importance = $_POST["importance"];
-    $user_id = $_SESSION['user_id']; // ID de l'utilisateur connecté
+    $user_id = $_SESSION['user_id']; 
 
     if (empty($title)) {
         die("Le titre est obligatoire !");
@@ -40,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $task_id = $pdo->lastInsertId();
 
-        // Gérer le téléchargement du fichier
         if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] == UPLOAD_ERR_OK) {
             $fileTmpPath = $_FILES['attachment']['tmp_name'];
             $fileName = $_FILES['attachment']['name'];
@@ -73,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo->commit();
 
         echo "Tâche ajoutée avec succès !";
-        header("Location: ../views/dashboard.php"); // Redirection après ajout
+        header("Location: ../views/dashboard.php");
         exit();
     } catch (Exception $e) {
         $pdo->rollBack();

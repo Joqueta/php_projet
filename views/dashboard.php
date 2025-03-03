@@ -10,7 +10,6 @@ if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit();
 }
-// Ajouter log out
 $pdo = getDBConnection();
 $user_id = $_SESSION["user_id"];
 
@@ -36,7 +35,6 @@ $tasks = $stmt->fetchAll();
         include "../includes/navbar.php";
         echo createHeader();
     ?>
-    <main>
     <h2>Vos tâches</h2>
     <a href="add_task.php">➕ Ajouter une tâche</a>
     <table border="1">
@@ -69,7 +67,6 @@ $tasks = $stmt->fetchAll();
                 </td>
             </tr>
         <?php endforeach; ?>
-    </table>   
-    </main> 
+    </table>    
 </body>
 </html>
