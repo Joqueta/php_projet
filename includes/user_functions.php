@@ -33,6 +33,7 @@ function validateUser($username, $password) {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION["user_id"] = $user["id"]; // Stocke l'ID utilisateur dans la session
         $_SESSION["username"] = $user["username"]; // Optionnel : Stocker aussi le nom d'utilisateur
+        $_SESSION["role"] = $user ["role"]; //Stoker le role de l'utilisateur
         return $user;
     } else {
         return false;
