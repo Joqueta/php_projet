@@ -6,13 +6,13 @@ body {
     min-height: 100vh;
 }
 
-/* Titre */
+
 h2 {
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Bouton ajouter une tâche */
+
 a {
     display: inline-block;
     text-decoration: none;
@@ -29,7 +29,7 @@ a:hover {
     background-color: #0056b3;
 }
 
-/* Tableau */
+
 table {
     width: 80%;
     max-width: 900px;
@@ -61,7 +61,6 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     table {
         width: 100%;

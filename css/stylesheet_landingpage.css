@@ -9,14 +9,14 @@ body {
   background-color: #f4f7fc;
   color: #333;
   line-height: 1.6;
+  font-size: 16px;
 }
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: inherit;
 }
 
-/* Hero Section */
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -28,15 +28,17 @@ a {
     background-position: 0% 50%;
   }
 }
+
 .hero {
-  /* background: linear-gradient(325deg,rgba(47, 61, 167, 1) 0%,  rgba(119, 181, 254, 1) 100%); */
   background: linear-gradient(-45deg, #4a90e2, #357ae8, #2a6ed1, #1a5cb6);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
   color: #fff;
-  padding: 60px 20px;
+  padding: 80px 20px;
   text-align: center;
+  border-bottom: 5px solid #357ae8;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -47,129 +49,145 @@ a {
     transform: translateY(0);
   }
 }
+
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 20px;
   animation: fadeIn 1s ease-out;
+  font-weight: 600;
 }
 
 .date-time {
-  font-size: 1.1rem;
-  margin: 10px 0;
   font-size: 2rem;
   font-weight: bold;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 15px;
 }
 
 .cta {
   display: inline-block;
-  /* background-color: #77b5fe; */
   background: linear-gradient(to right, #4a90e2, #357ae8);
   color: #fff;
-  padding: 12px 30px;
-  margin: 10px 15px;
-  border-radius: 5px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 14px 40px;
+  margin: 15px 20px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
 }
 
 .cta:hover {
   background-color: #4f84c1;
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Stats Section */
 .stats {
   background-color: #fff;
-  padding: 50px 20px;
+  padding: 60px 20px;
   text-align: center;
+  border-bottom: 1px solid #ddd;
 }
 
 .stats h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 20px;
+  font-weight: 600;
 }
 
 .stats p {
-    font-size: 2rem;
-    color: #357ae8;
+  font-size: 2.2rem;
+  color: #357ae8;
+  font-weight: 500;
 }
 
-/* Features Section */
 .features {
-  padding: 50px 20px;
+  padding: 60px 20px;
   text-align: center;
+  background-color: #f9f9f9;
 }
 
 .features h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 20px;
+  font-weight: 600;
 }
 
-.feature-list{
+.feature-list {
   list-style: none;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin: 20px 0;
 }
-.feature-list hr{
+
+.feature-list hr {
   background-color: #357ae8;
   width: 2px;
   border: none;
-}
-.features li {
-  font-size: 1.2rem;
-  margin: 10px 0;
+  height: 40px;
+  margin: 0 20px;
 }
 
-/* Testimonials Section */
+.features li {
+  font-size: 1.3rem;
+  margin: 15px 0;
+  font-weight: 400;
+  color: #333;
+}
+
 .testimonials {
-  background-color: #f9f9f9;
-  padding: 50px 20px;
+  background-color: #fff;
+  padding: 60px 20px;
   text-align: center;
+  border-bottom: 1px solid #ddd;
 }
 
 .testimonials h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 20px;
+  font-weight: 600;
 }
 
 .testimonials blockquote {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-style: italic;
   color: #555;
-  margin: 0 auto;
+  margin: 20px auto;
   max-width: 800px;
 }
 
-/* FAQ Section */
 .faq {
-  padding: 50px 20px;
+  padding: 60px 20px;
   text-align: center;
+  background-color: #f9f9f9;
 }
 
 .faq h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 20px;
+  font-weight: 600;
 }
 
 .faq p {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #666;
 }
 
-/* Footer */
 footer {
   background-color: #333;
   color: #fff;
-  padding: 20px 0;
+  padding: 30px 20px;
   text-align: center;
+  font-size: 1.1rem;
 }
 
 footer ul {
   list-style: none;
+  margin-bottom: 10px;
 }
 
 footer li {
@@ -184,17 +202,17 @@ footer a {
 
 footer a:hover {
   color: #fd9e5f;
+  text-decoration: underline;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
   .hero h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .cta {
     font-size: 1rem;
-    padding: 10px 20px;
+    padding: 12px 30px;
   }
 
   .stats,
@@ -205,10 +223,10 @@ footer a:hover {
   }
 
   .features li {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .testimonials blockquote {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }

@@ -3,7 +3,6 @@ require_once"../includes/user_functions.php";
 
 $pdo = new PDO('mysql:host=localhost;dbname=mydatabase', 'root', '');
 
-// Récupérer le nombre d'utilisateurs
 $sql = "SELECT COUNT(*) AS user_count FROM users";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
@@ -24,10 +23,9 @@ $userCount = $stmt->fetch(PDO::FETCH_ASSOC)['user_count'];
     <script>AOS.init();</script>
     <?php 
         include "../includes/navbar.php";
-        echo createHeader();
+        echo createHeader()
     ?>
 
-    <!-- Section d'introduction -->
     <section class="hero">
         <h1>Organise ta vie avec notre To-Do List intelligente</h1>
         <section class="date-time">
@@ -44,13 +42,11 @@ $userCount = $stmt->fetch(PDO::FETCH_ASSOC)['user_count'];
         <a href="login.php" class="cta">Connexion</a>
     </section>
 
-    <!-- Section des statistiques -->
     <section class="stats">
         <h2 data-aos="fade-up">Quelques chiffres</h2>
         <p><strong><?php echo $userCount; ?></strong> personnes utilisent cette application pour organiser leur vie.</p>
     </section>
 
-    <!-- Section des fonctionnalités -->
     <section class="features">
         <h2>Fonctionnalités principales</h2>
         <ul class="feature-list">
@@ -60,7 +56,6 @@ $userCount = $stmt->fetch(PDO::FETCH_ASSOC)['user_count'];
         </ul>
     </section>
 
-    <!-- Section des témoignages -->
     <section class="testimonials">
         <h2 data-aos="fade-up">Ce que disent nos utilisateurs</h2>
         <?php
@@ -76,12 +71,10 @@ $userCount = $stmt->fetch(PDO::FETCH_ASSOC)['user_count'];
         </form>
     </section>
 
-    <!-- Section FAQ -->
     <section class="faq">
         <h2 data-aos="fade-up">Questions fréquentes</h2>
         <p><strong>Q :</strong> Est-ce que l'application est gratuite ?<br><strong>R :</strong> Oui, l'application est entièrement gratuite.</p>
     </section>
-    <!-- Footer -->
     <footer>
         <ul>
             <li><a href="privacy.php">Politique de confidentialité</a></li>

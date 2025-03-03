@@ -6,7 +6,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit();
@@ -15,16 +14,18 @@ if (!isset($_SESSION["user_id"])) {
 $pdo = getDBConnection();
 $user_id = $_SESSION["user_id"];
 
-// Récupérer les informations de l'utilisateur
 $stmt = $pdo->prepare("SELECT username, email FROM users WHERE id = :user_id");
 $stmt->execute([":user_id" => $user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    die("Utilisateur non trouvé.");
+}
 
 $success = "";
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Mise à jour du nom d'utilisateur
     if (isset($_POST["update_username"])) {
         $new_username = trim($_POST["new_username"]);
 
@@ -37,8 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $error = "Le champ du nom d'utilisateur ne peut pas être vide.";
         }
     }
-
-    // Mise à jour de l'email
     if (isset($_POST["update_email"])) {
         $new_email = trim($_POST["new_email"]);
 
@@ -51,7 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Mise à jour du mot de passe
     if (isset($_POST["update_password"])) {
         $new_password = $_POST["new_password"];
         $confirm_password = $_POST["confirm_password"];
