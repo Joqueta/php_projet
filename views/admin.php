@@ -33,7 +33,6 @@ if (!isAdmin()){
             <li><a href="gerer_utilisateurs.php">Utilisateurs</a></li>
             <li><a href="voir_taches.php">Tâches</a></li>
             <li><a href="gerer_commentaires.php">Commentaires</a></li>
-            <li><a href="attachments.php">Pièces jointes</a></li>
         </ul>
     </nav>
 </body>
