@@ -4,8 +4,17 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 /* Titre */
 h2 {
     color: #333;
@@ -13,7 +22,7 @@ h2 {
 }
 
 /* Bouton ajouter une tâche */
-a {
+main a {
     display: inline-block;
     text-decoration: none;
     background-color: #007bff;
@@ -25,7 +34,7 @@ a {
     transition: background 0.3s;
 }
 
-a:hover {
+main a:hover {
     background-color: #0056b3;
 }
 
