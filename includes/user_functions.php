@@ -1,5 +1,6 @@
 <?php
 require_once 'db.php';
+require_once 'admin_functions.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -25,15 +26,15 @@ try {
 
 function validateUser($username, $password) { 
     $pdo = getDBConnection();
-    $sql = "SELECT id, username, password FROM users WHERE username = :username"; // Sélectionne l'id aussi
+    $sql = "SELECT id, username, password, role FROM users WHERE username = :username"; 
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['username' => $username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION["user_id"] = $user["id"]; // Stocke l'ID utilisateur dans la session
-        $_SESSION["username"] = $user["username"]; // Optionnel : Stocker aussi le nom d'utilisateur
-        $_SESSION["role"] = $user ["role"]; //Stoker le role de l'utilisateur
+    if ($user && password_verify($password, $user['password'])) { // Stocker les informations utilisateur dans la session
+        $_SESSION["user_id"] = $user["id"]; 
+        $_SESSION["username"] = $user["username"]; 
+        $_SESSION["role"] = $user ["role"]; 
         return $user;
     } else {
         return false;
@@ -61,16 +62,12 @@ function login(PDO $pdo, array $credentials): array|false
     return $user;
 }
 
-// Définir le fuseau horaire
-date_default_timezone_set('Europe/Paris');
-
 setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr_FR', 'fr', 'French_France'); 
 $date = new DateTime();
 
-// Utilisation de IntlDateFormatter pour formater la date en français
-$formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-$formattedDate = $formatter->format($date);
+// Correction de l'encodage
+$formattedDate = strftime('%A %d %B %Y', $date->getTimestamp());
+$formattedDate = mb_convert_encoding($formattedDate, 'UTF-8', 'ISO-8859-1'); // Correction d'encodage
 
-// Formater l'heure
 $formattedTime = $date->format('H:i');
 ?>

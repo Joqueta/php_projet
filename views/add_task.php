@@ -38,7 +38,6 @@ $pdo = getDBConnection();
         <select id="category_id" name="category_id">
             <option value="">Aucune</option>
             <?php
-            // Charger les catégories depuis la BDD
             $stmt = $pdo->query("SELECT id, name FROM categories");
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo "<option value='" . $row['id'] . "'>" . htmlspecialchars($row['name']) . "</option>";

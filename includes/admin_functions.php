@@ -8,7 +8,7 @@ $host = 'localhost';
 $db = 'mydatabase'; 
 $user = 'root';
 $password = '';
-$charset = 'utf8mb4';
+$charset = 'utf8mb4';   
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
@@ -17,9 +17,10 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES => false,
 ];
 
-function isAdmin(){
-    return isset($_SESSION["role"]) && $_SESSION["role"] === 'admin';
+function isAdmin() {
+    return isset($_SESSION["user_id"]) && isset($_SESSION["role"]) && $_SESSION["role"] === 'admin';
 }
+
 
 function userToAdmin($user_id) {
     if (isset($user_id)) {
@@ -41,17 +42,34 @@ function deleteUser($user_id){
         $stmt->execute(['id' => $user_id]);
     } 
 }
-// Vérification de la méthode de requête pour la promotion admin
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['promouvoir_admin']) && isset($_POST['user_id'])) { 
-    userToAdmin($_POST['user_id']);
-    header("Location: ../views/pages_admin/gerer_utilisateurs.php");
+function createTask($user_id, $description, $due_date) {
+    $pdo = getDBConnection();
+    $stmt = $pdo->prepare("INSERT INTO tasks (user_id, description, due_date) VALUES (:user_id, :description, :due_date)");
+    $stmt->execute([
+        ":user_id" => $user_id,
+        ":description" => $description,
+        ":due_date" => $due_date
+    ]);
+}
+
+// Vérificatio ncréation de tâche
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['user_id'], $_POST['description'], $_POST['due_date'])) {
+    createTask($_POST['user_id'], $_POST['description'], $_POST['due_date']);
+    header("Location: ../views/voir_taches.php");
     exit();
 }
 
-// Vérification de la méthode de requête pour la suppression d'utilisateur
+// Vérification promotion admin
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['promouvoir_admin']) && isset($_POST['user_id'])) { 
+    userToAdmin($_POST['user_id']);
+    header("Location: ../views/gerer_utilisateurs.php");
+    exit();
+}
+
+// Vérification suppression d'utilisateur
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_user']) && isset($_POST['user_id'])) {
     deleteUser($_POST['user_id']);
-    header("Location: ../views/pages_admin/gerer_utilisateurs.php");
+    header("Location: ../views/gerer_utilisateurs.php");
     exit();
 }
 ?>
