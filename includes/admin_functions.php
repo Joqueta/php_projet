@@ -21,16 +21,17 @@ function isAdmin(){
     return isset($_SESSION["role"]) && $_SESSION["role"] === 'admin';
 }
 
-function userToAdmin($user_id){
+function userToAdmin($user_id) {
     if (isset($user_id)) {
         $pdo = getDBConnection();
         $stmt = $pdo->prepare("UPDATE users SET role = 'admin' WHERE id = :id");
-        $stmt->execute(['id' => $user_id]);
-    }//vérifier si le formulaire a été soumis et si l'ID est bon
-} if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['user_id'])) { 
-    userToAdmin($_POST['user_id']);
-    header("Location: ../views/gerer_user.php");
-    exit();
+        $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            $_SESSION['success'] = "Utilisateur promu en administrateur !";
+        } else {
+            $_SESSION['error'] = "Erreur lors de la promotion.";
+        }
+    }    
 } 
 
 function deleteUser($user_id){
@@ -38,10 +39,19 @@ function deleteUser($user_id){
         $pdo= getDBConnection();
         $stmt = $pdo->prepare("DELETE FROM users WHERE id = :id"); 
         $stmt->execute(['id' => $user_id]);
-    } if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['user_id'])) {
-        deleteUser($_POST['user_id']);
-        header("Location: ../views/gerer_user.php");
-        exit();
-    }
+    } 
+}
+// Vérification de la méthode de requête pour la promotion admin
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['promouvoir_admin']) && isset($_POST['user_id'])) { 
+    userToAdmin($_POST['user_id']);
+    header("Location: ../views/pages_admin/gerer_utilisateurs.php");
+    exit();
+}
+
+// Vérification de la méthode de requête pour la suppression d'utilisateur
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_user']) && isset($_POST['user_id'])) {
+    deleteUser($_POST['user_id']);
+    header("Location: ../views/pages_admin/gerer_utilisateurs.php");
+    exit();
 }
 ?>
